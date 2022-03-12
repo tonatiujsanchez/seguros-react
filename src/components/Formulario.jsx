@@ -1,10 +1,12 @@
-import styled from "@emotion/styled"
 import { useState } from 'react'
+
+import styled from "@emotion/styled"
+
 import { obtenerDiferenciaYear, calcularMarca, obtenerPlan } from './../helpers/helper'
 
 
 
-const Formulario = () => {
+const Formulario = ({ setResumen, setCargando }) => {
 
     const [ datos, setDatos ] = useState({
         marca: '',
@@ -15,7 +17,7 @@ const Formulario = () => {
 
     const { marca, year, plan } = datos;
     const getInformacion = ( e ) => {
-
+        setResumen({})
         const nuevosDatos = { ...datos };
         nuevosDatos[ e.target.name ] = e.target.value;
 
@@ -31,9 +33,9 @@ const Formulario = () => {
             setError( true );
             return;
         }
-
+        
         setError( false );
-
+        setCargando( true )
         // Base de 2000
         let resultado = 2000;
 
@@ -53,7 +55,14 @@ const Formulario = () => {
         resultado = parseFloat(resultado * obtenerPlan( plan )).toFixed(2); 
 
         // Total
-        console.log( resultado );
+        setResumen({
+            cotizacion: resultado,
+            datos
+        });
+
+        setTimeout(() => {
+            setCargando( false )
+        }, 1000);
     }
 
   return (
@@ -72,6 +81,7 @@ const Formulario = () => {
             <Label htmlFor="year">Año</Label>
             <Select name="year" id="year" value={ year } onChange={ getInformacion }>
                 <option value="">-- Seleccione --</option>
+                <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
                 <option value="2021">2021</option>
@@ -139,6 +149,10 @@ const LabelRadio = styled.label`
     span{
         margin-left: 0.5rem;
     }
+
+    @media screen and ( max-width: 450px ) {
+        display: block;
+    }
 `
 
 const Submit = styled.input`
@@ -172,4 +186,5 @@ const MensajeError = styled.div`
     word-spacing: 1px;
     opacity: ${ props => props.error ? '1' : '0' };
 `
+
 export default Formulario
