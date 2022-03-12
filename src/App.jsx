@@ -28,7 +28,7 @@ function App() {
                     : ( resumen?.cotizacion ) 
                         ? <ContenedorResultado>
                             <Resumen datos = { resumen.datos } />
-                            <Resultado cotizacion = { resumen.cotizacion } />
+                            <Resultado cotizacion = { Number( resumen.cotizacion ) } />
                           </ContenedorResultado>
                         : <ContenedorSpinner> 
                             <h3>Elige una marca, un año y el tipo de seguro para cotizar</h3>

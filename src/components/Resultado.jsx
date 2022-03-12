@@ -1,13 +1,20 @@
 import styled from "@emotion/styled"
+import PropTypes from 'prop-types'
 
 
 const Resultado = ({ cotizacion }) => {
+  
   return (
     <ContenedorCotizacion>
         <Titulo>Cotización</Titulo>
         <Cotizacion>$ { cotizacion }</Cotizacion>
     </ContenedorCotizacion>
   )
+}
+
+
+Resultado.propTypes = {
+  cotizacion: PropTypes.number.isRequired
 }
 
 

@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import PropTypes from 'prop-types'
+
 import { capitalize } from './../utilities/utilities'
 
 const Resumen = ({ datos }) => {
@@ -17,7 +19,9 @@ const Resumen = ({ datos }) => {
   )
 }
 
-
+Resumen.propTypes = {
+    datos: PropTypes.object.isRequired
+}
 
 const Titulo = styled.h2`
     font-size: 1.3rem;

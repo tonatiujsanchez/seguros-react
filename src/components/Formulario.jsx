@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import styled from "@emotion/styled"
 
@@ -121,6 +122,12 @@ const Formulario = ({ setResumen, setCargando }) => {
         <Submit type="submit" value="Cotizar"/>
     </form>
   )
+}
+
+
+Formulario.propTypes = {
+    setResumen: PropTypes.func.isRequired,
+    setCargando: PropTypes.func.isRequired
 }
 
 

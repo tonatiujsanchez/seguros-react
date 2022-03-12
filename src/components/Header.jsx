@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 
 const Header = ({ titulo }) => {
     return (
@@ -6,6 +7,10 @@ const Header = ({ titulo }) => {
             <Titulo>{titulo}</Titulo>
         </ContenedorHeader>
     )
+}
+
+Header.propTypes = {
+    titulo: PropTypes.string.isRequired
 }
 
 const ContenedorHeader = styled.header`
